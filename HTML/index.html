@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../CSS/style.css">
+
+    <script src="https://kit.fontawesome.com/7f45b247f3.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <header>
+        <div class="left-nav">
+            <h2>Crypto Tracker</h1>
+        </div>
+        <div class="right-nav">
+            <button><a href="#"> Home </a></button>
+            <button> <a href="./fav.html"> Liked Coins </a></button> 
+            <input type="text" placeholder="Search for coins...">  
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+    </header>
+
+    <main>
+        <table border="1px solid gray" cellpadding="10px" cellspacing="0">
+            <thead>
+                <tr>
+                    <th> #</th>
+                    <th> Icon  </th>
+                    <th> Name </th>
+                    <th> Price </th>
+                    
+                    <th> Volume <i class="fa-solid fa-arrow-up"></i> 
+                    <i class="fa-solid fa-arrow-down"></i> </th>
+
+                    <th> Market Cap <i class="fa-solid fa-arrow-up"></i>
+                    <i class="fa-solid fa-arrow-down"></i>  </th>
+
+                    <th> Favourite </th>
+                </tr>
+
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><i class="fa-brands fa-bitcoin"></i></td>
+                    <td>Bitcoin</td>
+                    <td>$40,000</td>
+                    <td>$1B</td>
+                    <td>$800B</td>
+                    <td><i class="fa-solid fa-star"></i></td>
+                </tr>
+                </tbody>
+
+            </thead>
+        </table>
+
+        <div class="pagination">
+            <button class="prev">Previous</button>
+            <button class="next">Next</button>
+        </div>
+    </main>
+
+    <script src="../JavaScript/script.js"></script>
+    
+</body>
+</html>
