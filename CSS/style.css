@@ -3,7 +3,7 @@ header{
     display : flex;
     justify-content: space-between;
     align-items: center;
-    padding : 10px;
+    padding : 0px 10px;
 }
 
 .left-nav{
@@ -11,7 +11,6 @@ header{
 }
 
 .right-nav{
-    position: relative;
     display: flex;
     gap : 20px;
 }
@@ -30,6 +29,10 @@ header{
     color : white;
 }
 
+.search-container{
+    position: relative;
+}
+
 .right-nav input{
     width: 200px;
     height : 40px;
@@ -41,10 +44,29 @@ header{
     padding-left: 10px;
 }
 
-.right-nav i {
+.search-icon {
     position: absolute;
     right : 10px;
-    top : 32%;
+    top : 30%;
+}
+
+.dialog-box{
+    position: absolute;
+    top : calc(100% + 10px);
+    width : 100%;
+    background-color: white;
+    z-index: 1000;
+    padding : 0px 10px;
+    border-radius : 8px;
+    display: none;
+    box-shadow: 1px 1px 10px 4px gray;
+}
+
+.search-title{
+    display : flex;
+    justify-content: space-around;
+    align-items: center;
+    gap : 20px;
 }
 
 table{
@@ -76,6 +98,20 @@ table th{
 
 .pagination button:hover{
     background-color: #d1541e;
+}
+
+
+@media screen and (max-width : 768px ){
+
+    .right-nav button{
+        padding : 4px 8px;
+        font-size : small
+    }
+
+    table{
+        font-size : small;
+    }
+
 }
 
 
