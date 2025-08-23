@@ -6,9 +6,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 let coins = [];
 let favouriteList = [];
 
+let currentPage = 1;
+let itemsPerPage = 25;
+
 async function fetchCoins(){
     try{
-        const response = await fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1&sparkline=false");
+        const response = await fetch(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${itemsPerPage}&page=${currentPage}&sparkline=false`);
         coins = await response.json();
         console.log(coins);
     }
@@ -30,9 +33,9 @@ function renderCoins(coins){
             <td><img src="${coin.image}" alt="${coin.name}" width="16px"
             height="16px" /></td>
             <td>${coin.name}</td>
-            <td>${coin.current_price}</td>
-            <td>${coin.total_volume}</td>
-            <td>${coin.market_cap}</td>
+            <td>$${coin.current_price.toLocaleString()}</td>
+            <td>$${coin.total_volume.toLocaleString()}</td>
+            <td>$${coin.market_cap.toLocaleString()}</td>
 
             <td><i class="fa-solid fa-star
             ${isFavourite ? "favourite" : ""}" 
@@ -46,3 +49,23 @@ function renderCoins(coins){
 let stars = document
 .getElementsByClassName("fa-star")
 .map((star)=> star.addEventListener)
+
+
+// Get functionality of prev and nextButtons ... 
+
+const prevButton = document.querySelector(".prev");
+const nextButton = document.querySelector(".next");
+
+prevButton.addEventListener("click", async () => {
+    if (currentPage > 1) {
+        currentPage--;
+        await fetchCoins();
+        renderCoins(coins);
+    }
+});
+
+nextButton.addEventListener("click", async () => {
+    currentPage++;
+    await fetchCoins();
+    renderCoins(coins);
+});

@@ -1,0 +1,117 @@
+header{
+    background-color : #333;
+    display : flex;
+    justify-content: space-between;
+    align-items: center;
+    padding : 0px 10px;
+}
+
+.left-nav{
+    color : #f16222;
+}
+
+.right-nav{
+    display: flex;
+    gap : 20px;
+}
+
+.right-nav button{
+    background-color: #f16222;
+    padding : 15px;
+    border-radius : 8px;
+    border : none;
+    font-size: medium;
+    cursor: pointer;
+}
+
+.right-nav button a{
+    text-decoration: none;
+    color : white;
+}
+
+.search-container{
+    position: relative;
+}
+
+.right-nav input{
+    width: 200px;
+    height : 40px;
+    border-radius : 8px;
+    border : none;
+}
+
+.right-nav input[placeholder]{
+    padding-left: 10px;
+}
+
+.search-icon {
+    position: absolute;
+    right : 10px;
+    top : 30%;
+}
+
+.dialog-box{
+    position: absolute;
+    top : calc(100% + 10px);
+    width : 100%;
+    background-color: white;
+    z-index: 1000;
+    padding : 0px 10px;
+    border-radius : 8px;
+    display: none;
+    box-shadow: 1px 1px 10px 4px gray;
+}
+
+.search-title{
+    display : flex;
+    justify-content: space-around;
+    align-items: center;
+    gap : 20px;
+}
+
+table{
+    width : 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+table th{
+    background-color:lightgrey;
+}
+
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap : 20px;
+}
+
+.pagination button{
+    background-color: #f16222;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.pagination button:hover{
+    background-color: #d1541e;
+}
+
+
+@media screen and (max-width : 768px ){
+
+    .right-nav button{
+        padding : 4px 8px;
+        font-size : small
+    }
+
+    table{
+        font-size : small;
+    }
+
+}
+
+
