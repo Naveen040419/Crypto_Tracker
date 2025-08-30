@@ -100,6 +100,9 @@ table th{
     background-color: #d1541e;
 }
 
+.favourites{
+    color : yellow;
+}
 
 @media screen and (max-width : 768px ){
 

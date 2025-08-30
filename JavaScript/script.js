@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 let coins = [];
-let favouriteList = [];
+let favouriteList = JSON.parse(localStorage.getItem("favourites")) || [];
 
 let currentPage = 1;
 let itemsPerPage = 25;
@@ -39,16 +39,15 @@ function renderCoins(coins){
 
             <td><i class="fa-solid fa-star
             ${isFavourite ? "favourite" : ""}" 
-            style="color: #b197fc"></i></td>
-        
+            style="color: #b197fc" data-id="${coin.id}"></i></td>
+
         `;
         tbody.appendChild(row);
     });
 }
 
-let stars = document
-.getElementsByClassName("fa-star")
-.map((star)=> star.addEventListener)
+// Removed invalid code: HTMLCollection does not have .map()
+// Star click handling is managed by the document click event below.
 
 
 // Get functionality of prev and nextButtons ... 
@@ -69,3 +68,4 @@ nextButton.addEventListener("click", async () => {
     await fetchCoins();
     renderCoins(coins);
 });
+
