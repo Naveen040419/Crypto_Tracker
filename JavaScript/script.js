@@ -4,7 +4,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 let coins = [];
-let favouriteList = JSON.parse(localStorage.getItem("favourites")) || [];
 
 let currentPage = 1;
 let itemsPerPage = 25;
