@@ -27,6 +27,10 @@ function renderCoins(coins) {
 
     coins.forEach((coin, index) => {
         const row = document.createElement("tr");
+
+        row.classList.add("coin-row");
+        row.setAttribute("data-id", coin.id);  
+
         let isFavourite = favouriteList.includes(coin.id);
 
         row.innerHTML = `
@@ -83,3 +87,17 @@ document.addEventListener("click", (e) => {
         e.target.classList.toggle("favourite");
     }
 });
+
+document.addEventListener("click", (e) => {
+
+    const row = e.target.closest(".coin-row");
+
+    if (row && !e.target.classList.contains("fa-star")) {
+
+        const coinId = row.getAttribute("data-id"); 
+        window.location.href = `coin.html?id=${coinId}`;    
+    }
+});
+
+
+
