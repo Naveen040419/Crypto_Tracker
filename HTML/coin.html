@@ -40,6 +40,46 @@
 
         </div>
     </header>
+
+    <main>
+        <div id="coin-container">
+            <div id="sidebar">
+                <img src="" alt="coin-img">
+                <h3 id="coin-name"></h3>
+                <p id="coin-desc"></p>
+
+                <div id="coin-data">
+                    <div>
+                        <span> Rank : </span>
+                        <span id="coin-rank"></span>
+                    </div>
+                    <div>
+                        <span> Current price : </span>
+                        <span id="coin-rank"></span>
+                    </div>
+                    <div>
+                        <span> Market cap : </span>
+                        <span id="coin-rank"></span>
+                    </div>
+                </div>
+
+                <button id="add-fav-btn"> Add to Favourites </button>
+
+            </div>
+            <div id="right-chart">
+                <div id="btn-container">
+                    <button id="24h"> 24h </button>
+                    <button id="30d"> 30d </button>
+                    <button id="90d"> 3m </button>
+                </div>
+
+                <canvas id="coinChart"> </canvas>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="../JavaScript/coin.js"></script>
     
 </body>
 </html>
