@@ -98,6 +98,3 @@ document.addEventListener("click", (e) => {
         window.location.href = `coin.html?id=${coinId}`;    
     }
 });
-
-
-
