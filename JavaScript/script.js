@@ -132,7 +132,7 @@ const showSearchResults = (data) => {
             let listItem = document.createElement("li");
 
             listItem.innerHTML = `
-                <img src="${coin.thumb}" alt="${coin.name}" width="16px" height="16px" />
+                <img src="${coin.thumb}" alt="${coin.name}" width="20px" height="20px" />
                 <span>${coin.name}</span>
             `;
             listItem.setAttribute("data-id", coin.id);
@@ -144,7 +144,27 @@ const showSearchResults = (data) => {
     }
 
     searchDialog.style.display = "block";
+
+
+    // url functionality...
+
+    resultList.querySelectorAll("li").forEach((item) => {
+
+    item.addEventListener("click", (e) => {
+
+        const coinId = e.currentTarget.dataset.id;
+        window.location.href = `coin.html?id=${coinId}`;
+    });
+});
+
 };
+
+
+const handleCloseSearchDialog = ()=>{
+    
+    const searchDialog = document.querySelector(".dialog-box");
+    searchDialog.style.display = "none";
+}
 
 
 document.querySelector(".search-input").addEventListener("input", () => {
@@ -156,6 +176,6 @@ document.querySelector(".search-icon").addEventListener("click", () => {
     fetchSearchResult(); 
 });
 
-document.querySelector(".fa-xmark").addEventListener("click", () => {
+document.querySelector(".close-icon").addEventListener("click", () => {
     handleCloseSearchDialog(); 
 });

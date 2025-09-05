@@ -69,6 +69,15 @@ header{
     gap : 20px;
 }
 
+.search-content li{
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap : 20px;
+    padding : 10px 5px;
+}
+
 table{
     width : 100%;
     border-collapse: collapse;
