@@ -106,8 +106,11 @@ async function fetchChartData(days) {
       `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=${days}`
     );
     const data = await response.json();
+
     updateChart(data);
-  } catch (err) {
+  } 
+  
+  catch (err) {
     console.error("Error fetching chart data:", err);
   }
 }
@@ -128,8 +131,18 @@ function updateChart(data) {
   coinChart.update();
 }
 
+const buttons = document.querySelectorAll("#btn-container button");
+console.log(buttons);
+
+buttons.forEach( (button) =>{
+   
+  button.addEventListener( "click", (event) =>{
+    const days = event.target.id == '24h'? 1 : event.target.id == '30d' ? 30 : 90;
+    fetchChartData(days);
+  });
+});
+
 
 await fetchChartData(1);
 
-document.getElementById('24h').addEventListener("click", () => fetchChartData(1));
 });

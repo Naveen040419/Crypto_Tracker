@@ -98,3 +98,64 @@ document.addEventListener("click", (e) => {
         window.location.href = `coin.html?id=${coinId}`;    
     }
 });
+
+
+// Search - Functionality...
+
+const fetchSearchResult = async () => {
+    let searchText = document.querySelector(".search-input").value.trim();
+
+    if (searchText) {
+        try {
+            let result = await fetch(`https://api.coingecko.com/api/v3/search?query=${searchText}`);
+            let data = await result.json();
+
+            console.log( data );
+
+            showSearchResults(data.coins); 
+        } catch (error) {
+            console.error("Error fetching search results:", error);
+        }
+    } else {
+        console.log("No result found");
+    }
+};
+
+const showSearchResults = (data) => {
+    const searchDialog = document.querySelector(".dialog-box");
+    const resultList = document.querySelector(".search-content ul"); 
+
+    resultList.innerHTML = ""; 
+
+    if (data.length) {
+        data.slice(0, 10).forEach((coin) => {
+            let listItem = document.createElement("li");
+
+            listItem.innerHTML = `
+                <img src="${coin.thumb}" alt="${coin.name}" width="16px" height="16px" />
+                <span>${coin.name}</span>
+            `;
+            listItem.setAttribute("data-id", coin.id);
+
+            resultList.appendChild(listItem);
+        });
+    } else {
+        resultList.innerHTML = `<li>No Coins found</li>`;
+    }
+
+    searchDialog.style.display = "block";
+};
+
+
+document.querySelector(".search-input").addEventListener("input", () => {
+    fetchSearchResult(); 
+});
+
+
+document.querySelector(".search-icon").addEventListener("click", () => {
+    fetchSearchResult(); 
+});
+
+document.querySelector(".fa-xmark").addEventListener("click", () => {
+    handleCloseSearchDialog(); 
+});
