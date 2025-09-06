@@ -128,7 +128,7 @@ const showSearchResults = (data) => {
     resultList.innerHTML = ""; 
 
     if (data.length) {
-        data.slice(0, 10).forEach((coin) => {
+        data.forEach((coin) => {
             let listItem = document.createElement("li");
 
             listItem.innerHTML = `

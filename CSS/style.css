@@ -60,6 +60,7 @@ header{
     border-radius : 8px;
     display: none;
     box-shadow: 1px 1px 10px 4px gray;
+    height: 400px;
 }
 
 .search-title{
@@ -76,6 +77,21 @@ header{
     align-items: center;
     gap : 20px;
     padding : 10px 5px;
+}
+
+.search-content{
+    height: 90%;
+    overflow-y: scroll;
+}
+
+.search-content li:hover{
+    background-color: violet;
+    cursor: pointer;
+}
+
+.search-content, 
+.close-icon{
+  cursor: pointer;
 }
 
 table{
