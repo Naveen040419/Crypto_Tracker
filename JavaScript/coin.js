@@ -137,7 +137,11 @@ console.log(buttons);
 buttons.forEach( (button) =>{
    
   button.addEventListener( "click", (event) =>{
-    const days = event.target.id == '24h'? 1 : event.target.id == '30d' ? 30 : 90;
+
+    buttons.forEach( btn => btn.classList.remove("active"));
+    event.currentTarget.classList.add("active");
+
+    const days = event.currentTarget.id == '24h'? 1 : event.currentTarget.id == '30d' ? 30 : 90;
     fetchChartData(days);
   });
 });
@@ -146,3 +150,31 @@ buttons.forEach( (button) =>{
 await fetchChartData(1);
 
 });
+
+
+document.querySelector("#add-fav-btn").addEventListener("click", () => {
+
+  let addToFavButton = document.querySelector("#add-fav-btn");
+
+  let urlParams = new URLSearchParams(window.location.search);
+  let coinId = urlParams.get("id");
+
+
+  let favCoins = JSON.parse(localStorage.getItem("favourites")) || [];
+
+  if (favCoins.includes(coinId)) {
+
+    favCoins = favCoins.filter(id => id !== coinId);
+    addToFavButton.textContent = "Add to Favourites";
+  } else {
+  
+    favCoins.push(coinId);
+    addToFavButton.textContent = "Remove from Favourites";
+  }
+
+  localStorage.setItem("favourites", JSON.stringify(favCoins));
+});
+
+
+ 
+

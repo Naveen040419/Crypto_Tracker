@@ -103,6 +103,8 @@ document.addEventListener("click", (e) => {
 // Search - Functionality...
 
 const fetchSearchResult = async () => {
+
+    debounce( async () => { 
     let searchText = document.querySelector(".search-input").value.trim();
 
     if (searchText) {
@@ -119,7 +121,16 @@ const fetchSearchResult = async () => {
     } else {
         console.log("No result found");
     }
+  
+  }, 300);
 };
+
+let timeoutId;
+const debounce = ( func, delay ) => {
+
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout( func, delay );
+}
 
 const showSearchResults = (data) => {
     const searchDialog = document.querySelector(".dialog-box");

@@ -102,16 +102,10 @@ header{
   font-size: 14px;
   border: 1px solid #f16222;
   border-radius: 5px;
-  background-color: white;
-  color: #f16222;
+  background-color: rgb(218, 216, 85);
+  color: white;
   cursor: pointer;
   margin: 0 5px;
-}
-
-#btn-container button:hover{
-    background-color:#e97843;
-    color : white;
-    transform: scale(1.2);
 }
 
 #add-fav-btn{
@@ -125,8 +119,7 @@ header{
   margin-top :10px;
 }
 
-#add-fav-btn:hover{
-    background-color:#e97843;
-    color : white;
-    transform: scale(1.2);
+#btn-container .active{
+    background-color: #f16222;
+    color: white;
 }
