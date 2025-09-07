@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", async () => {
     await fetchCoins();
     renderCoins(coins);
+    handlePrevControls();
+
 });
 
 let coins = [];
@@ -53,19 +55,46 @@ function renderCoins(coins) {
 const prevButton = document.querySelector(".prev");
 const nextButton = document.querySelector(".next");
 
-prevButton.addEventListener("click", async () => {
+function updatePagination(){
+    document.querySelector(".prev-btn").disabled = currentPage == 1;
+    document.querySelector(".next-btn").disabled = coins.length < itemsPerPage;
+}
+
+const handlePrevControls = async () => {
+
     if (currentPage > 1) {
+        prevButton.style.cursor = "pointer";    
         currentPage--;
         await fetchCoins();
         renderCoins(coins);
+        updatePagination();
     }
+    else{
+        prevButton.style.cursor = "not-allowed";
+        prevButton.style.backgroundColor = "#ccc";
+    }
+}
+
+prevButton.addEventListener("click", async () => {
+    await handlePrevControls();
 });
 
-nextButton.addEventListener("click", async () => {
+
+const handleNextControls = async () => {
+
+    updatePagination();
+
     currentPage++;
     await fetchCoins();
     renderCoins(coins);
+    
+}
+
+nextButton.addEventListener("click", async () => {
+    await handleNextControls();
 });
+
+
 
 // Star click handling (with save to localStorage)
 document.addEventListener("click", (e) => {
@@ -190,3 +219,5 @@ document.querySelector(".search-icon").addEventListener("click", () => {
 document.querySelector(".close-icon").addEventListener("click", () => {
     handleCloseSearchDialog(); 
 });
+
+
