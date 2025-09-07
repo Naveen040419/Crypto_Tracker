@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", async () => {
+
     await fetchCoins();
     renderCoins(coins);
+
+    updatePagination();
 });
 
 let coins = [];
@@ -9,8 +12,22 @@ let favouriteList = JSON.parse(localStorage.getItem("favourites")) || [];
 let currentPage = 1;
 let itemsPerPage = 25;
 
+// Shimmer Effect functions
+
+const showShimmerEffect = ()=>{
+    document.querySelector(".shimmer-effect").style.display = "block";
+    document.querySelector(".pagination").style.display = "none";
+}
+
+const hideShimmerEffect = ()=>{
+    document.querySelector(".shimmer-effect").style.display = "none";
+    document.querySelector(".pagination").style.display = "flex";
+}
+
 async function fetchCoins() {
     try {
+
+        showShimmerEffect();
         const response = await fetch(
             `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=${itemsPerPage}&page=${currentPage}&sparkline=false`
         );
@@ -18,6 +35,9 @@ async function fetchCoins() {
         console.log(coins);
     } catch (err) {
         console.error("Error fetching coins:", err);
+    }
+    finally {
+        hideShimmerEffect();
     }
 }
 
@@ -78,7 +98,6 @@ function updatePagination() {
   }
 }
 
-updatePagination();
 
 const handlePrevControls = async () => {
   if (currentPage > 1) {
@@ -228,5 +247,6 @@ document.querySelector(".search-icon").addEventListener("click", () => {
 document.querySelector(".close-icon").addEventListener("click", () => {
     handleCloseSearchDialog(); 
 });
+
 
 
