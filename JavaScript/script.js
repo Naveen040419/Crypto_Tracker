@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", async () => {
     await fetchCoins();
     renderCoins(coins);
-    handlePrevControls();
-
 });
 
 let coins = [];
@@ -55,45 +53,56 @@ function renderCoins(coins) {
 const prevButton = document.querySelector(".prev");
 const nextButton = document.querySelector(".next");
 
-function updatePagination(){
-    document.querySelector(".prev-btn").disabled = currentPage == 1;
-    document.querySelector(".next-btn").disabled = coins.length < itemsPerPage;
+function updatePagination() {
+
+  // Disable prev button when on first page
+  if (currentPage === 1) {
+    prevButton.disabled = true;
+    prevButton.style.cursor = "not-allowed";
+    prevButton.style.backgroundColor = "#ccc";
+  } else {
+    prevButton.disabled = false;
+    prevButton.style.cursor = "pointer";
+    prevButton.style.backgroundColor = "#f16222";
+  }
+
+  // Disable next button when it's the last page
+  if (coins.length < itemsPerPage) {
+    nextButton.disabled = true;
+    nextButton.style.cursor = "not-allowed";
+    nextButton.style.backgroundColor = "#ccc";
+  } else {
+    nextButton.disabled = false;
+    nextButton.style.cursor = "pointer";
+    nextButton.style.backgroundColor = "#f16222";
+  }
 }
+
+updatePagination();
 
 const handlePrevControls = async () => {
-
-    if (currentPage > 1) {
-        prevButton.style.cursor = "pointer";    
-        currentPage--;
-        await fetchCoins();
-        renderCoins(coins);
-        updatePagination();
-    }
-    else{
-        prevButton.style.cursor = "not-allowed";
-        prevButton.style.backgroundColor = "#ccc";
-    }
-}
-
-prevButton.addEventListener("click", async () => {
-    await handlePrevControls();
-});
-
-
-const handleNextControls = async () => {
-
-    updatePagination();
-
-    currentPage++;
+  if (currentPage > 1) {
+    currentPage--;
     await fetchCoins();
     renderCoins(coins);
-    
-}
+    updatePagination();
+  }
+};
 
-nextButton.addEventListener("click", async () => {
-    await handleNextControls();
+prevButton.addEventListener("click", async () => {
+  await handlePrevControls();
 });
 
+const handleNextControls = async () => {
+  currentPage++;
+  await fetchCoins();
+  renderCoins(coins);
+  updatePagination();
+};
+
+nextButton.addEventListener("click", async () => {
+  await handleNextControls();
+});
 
 
 // Star click handling (with save to localStorage)
