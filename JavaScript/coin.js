@@ -15,8 +15,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   async function fetchCoinData() {
     try {
 
-      showShimmerEffect();
-
       const response = await fetch(`https://api.coingecko.com/api/v3/coins/${coinId}`);
       const data = await response.json();
 
@@ -25,9 +23,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     } catch (err) {
       console.error("Error fetching coin data:", err);
       coinContainer.innerHTML = `<p>Failed to load coin data. Try again later.</p>`;
-    }
-    finally{
-      hideShimmerEffect();
     }
   }
 
